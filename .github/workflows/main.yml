@@ -13,6 +13,7 @@ jobs:
     steps:
      - id: repo
        name: Repo Checkout
+       uses: actions/checkout@v2
 
      - id: python
        name: Python setup & Packages
