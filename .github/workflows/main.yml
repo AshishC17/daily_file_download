@@ -12,20 +12,20 @@ jobs:
 
     steps:
      - id: repo
-        name: Repo Checkout
-        uses: actions/checkout@v2
+       name: Repo Checkout
+       uses: actions/checkout@v2
 
      - id: python
-        name: Python setup & Packages
-        steps:
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
-          cache: 'pip' # caching pip dependencies
+       name: Python setup & Packages
+       steps:
+       uses: actions/setup-python@v4
+       with:
+        python-version: '3.9'
+        cache: 'pip' # caching pip dependencies
      - run: pip install -r requirements.txt
 
      - id: jupyter
-        name: Jupyter Notebook execution
-        run: jupyter execute download.ipynb
-        shell: bash
+       name: Jupyter Notebook execution
+       run: jupyter execute download.ipynb
+       shell: bash
     
