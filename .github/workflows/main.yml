@@ -1,4 +1,4 @@
-name: Jupyter automation
+name: Jupyter
 
 # controls when the workflow will run
 on:
