@@ -1,24 +1,30 @@
 name: CI Workflow
 
+# controls when the workflow will run
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+  schedule: 
+    - cron:'0 */24 * * *'
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+     - id: repo
+       name: Repo Checkout
 
-    - name: Run Build Script
-      run: |
-        echo "Running build script..."
-        # Add your build commands here
+     - id: python
+       name: Python setup & Packages
+       steps:
+       uses: actions/setup-python@v4
+       with:
+        python-version: '3.9'
+        cache: 'pip' # caching pip dependencies
+     - run: pip install -r requirements.txt
 
-    - name: Run Tests
-      run: |
-        echo "Running tests..."
-        # Add your test commands here
+     - id: jupyter
+       name: Jupyter Notebook execution
+       run: jupyter execute download.ipynb
+       shell: bash
+    
